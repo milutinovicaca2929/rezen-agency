@@ -1,0 +1,8 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/smilesthetics", "destination": "/smilesthetics.html" },
+    { "source": "/yakut", "destination": "/yakut.html" }
+  ]
+}
