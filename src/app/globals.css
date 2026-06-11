@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --muted: #6b6b6b;
+  --border: #e8e8e8;
+  --surface: #f7f7f7;
+  --dark: #0a0a0a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-dark: var(--dark);
+  --font-sans: var(--font-jakarta);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+::selection {
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Consistent section spacing — mobile-first */
+.section-pad {
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
+}
+
+@media (min-width: 640px) {
+  .section-pad {
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+}
+
+/* Button micro-interaction */
+.btn-interact {
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.btn-interact:hover {
+  transform: scale(1.02);
+}
+
+.btn-interact:active {
+  transform: scale(0.99);
+}
+
+/* Link underline reveal */
+.link-underline {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.link-underline:hover {
+  color: var(--foreground);
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+/* Homepage featured work — desktop scroll stack */
+.featured-work-pin {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.featured-work-stack {
+  height: clamp(420px, 52vh, 560px);
+}
+
+.featured-work-card-layer {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .featured-work-card-layer {
+    will-change: auto;
+  }
+}
+
+/* Portfolio project cards */
+.portfolio-card {
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 400ms ease, border-color 300ms ease;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.08);
+  border-color: rgba(10, 10, 10, 0.15);
+}
+
+/* Service grid cards */
+.service-grid-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Pricing preview cards */
+.pricing-card {
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Contact form inputs */
+.contact-input {
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Hero filmstrip cards */
+.hero-filmstrip-card {
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease,
+    border-color 0.3s ease;
+  will-change: transform;
+}
+
+.hero-filmstrip-card:hover {
+  transform: translateY(-16px) scale(1.04);
+  z-index: 20;
+}
+
+.hero-filmstrip-card:hover > div {
+  box-shadow: 0 32px 64px rgba(0, 0, 0, 0.14);
+  border-color: rgba(10, 10, 10, 0.2);
+}
+
+@media (max-width: 767px) {
+  .hero-filmstrip-card:hover {
+    transform: translateY(-10px) scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-filmstrip-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Card lift */
+.card-lift {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 767px) {
+  .card-lift:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* WhatsApp FAB safe area on mobile */
+.whatsapp-fab {
+  margin-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .btn-interact:hover,
+  .portfolio-card:hover,
+  .card-lift:hover,
+  .whatsapp-fab:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .link-underline::after {
+    display: none;
+  }
+}
